@@ -3,10 +3,10 @@ const BudgetItem = ({
 }) => {
     return (
         <li>
-            {item.category}
+            {item.payment_category}
             {item.title}
-            {item.pmt_method}
-            {item.pmt_day}
+            {item.payment_method}
+            {item.payment_day}
             {item.amount}
         </li>
     )
