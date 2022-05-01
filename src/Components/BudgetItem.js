@@ -4,7 +4,7 @@ const BudgetItem = ({
     return (
         <li>
             {item.category}
-            {item.name}
+            {item.title}
             {item.pmt_method}
             {item.pmt_day}
             {item.amount}

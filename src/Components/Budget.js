@@ -1,35 +1,42 @@
 import { useState } from 'react';
 import BudgetItem from './BudgetItem';
+import BudgetItemCreate from './BudgetItemCreate';
 
 let initialBudget = [
     {
         id: 1,
-        name: 'Mortgage',
+        title: 'Mortgage',
         amount: 1700.00,
         pmt_method: 'checking',
         pmt_day: 15,
-        category: 'house'
+        category: 'House'
     },
     {
         id: 2,
-        name: 'Water',
+        title: 'Water',
         amount: 100.00,
         pmt_method: 'checking',
         pmt_day: 27,
-        category: 'utilities'
+        category: 'Utilities'
     },
     {
         id: 3,
-        name: 'Electric',
+        title: 'Electric',
         amount: 110.00,
         pmt_method: 'CC 2331',
         pmt_day: 20,
-        category: 'utilities'
+        category: 'Utilities'
     }
 ]
 
 const Budget = () => {
     const [budgetItems, setBudgetItems] = useState(initialBudget);
+
+    const handleAddBudgetItem = (item) => {
+        setBudgetItems((prevItems) => {
+            return [...prevItems, item]
+        })
+    }
 
     return (
         <article>
@@ -42,6 +49,7 @@ const Budget = () => {
                     />
                 ))}
             </ul>
+            <BudgetItemCreate addBudgetItem={handleAddBudgetItem} />
         </article>
     )
 }
