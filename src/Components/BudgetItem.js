@@ -2,13 +2,13 @@ const BudgetItem = ({
     item
 }) => {
     return (
-        <li>
-            {item.payment_category}
-            {item.title}
-            {item.payment_method}
-            {item.payment_day}
-            {item.amount}
-        </li>
+        <tr>
+            <td>{item.payment_category}</td>
+            <td>{item.title}</td>
+            <td>{item.payment_method}</td>
+            <td>{item.payment_day}</td>
+            <td>{item.amount}</td>
+        </tr>
     )
 }
 
