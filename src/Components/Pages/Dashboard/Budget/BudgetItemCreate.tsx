@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { BudgetItemData } from '../../../../Models/BudgetItem';
 
 const days = Array.from(new Array(31), (x, i) => i + 1);
 
@@ -33,9 +34,7 @@ const initialPaymentCategories = [
 ];
 
 // Props from Budget
-const BudgetItemCreate = ({
-    addBudgetItem
-}) => {
+const BudgetItemCreate: React.FC<{ addBudgetItem: (item: BudgetItemData) => void }> = (props) => {
     const [paymentMethods, setPaymentMethods] = useState(initialPaymentMethods);
     const [paymentCategories, setPaymentCategories] = useState(initialPaymentCategories);
 
@@ -45,23 +44,23 @@ const BudgetItemCreate = ({
     const [paymentDay, setPaymentDay] = useState('');
     const [paymentCategory, setPaymentCategory] = useState('');
 
-    const handleAddTitle = (e) => {
+    const handleAddTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
         setTitle(e.target.value);
     }
 
-    const handleAddAmount = (e) => {
+    const handleAddAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
         setAmount(e.target.value);
     }
 
-    const handleAddPaymentMethod = (e) => {
+    const handleAddPaymentMethod = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setPaymentMethod(e.target.value);
     }
 
-    const handleAddPaymentDay = (e) => {
+    const handleAddPaymentDay = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setPaymentDay(e.target.value);
     }
 
-    const handleAddPaymentCategory = (e) => {
+    const handleAddPaymentCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setPaymentCategory(e.target.value);
     }
 
@@ -73,24 +72,24 @@ const BudgetItemCreate = ({
         setPaymentCategory('');
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
         let newItem = {
             id: Math.floor(Math.random()),
             title: title,
             amount: amount,
-            pmt_method: paymentMethod,
-            pmt_day: paymentDay,
-            category: paymentCategory
+            payment_method: paymentMethod,
+            payment_day: paymentDay,
+            payment_category: paymentCategory
         }
 
-        addBudgetItem(newItem);
+        props.addBudgetItem(newItem);
         handleClearForm();
     }
 
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <label htmlFor="title">Title</label>
             <input
                 type="text"
@@ -163,7 +162,7 @@ const BudgetItemCreate = ({
                 ))}
             </select>
 
-            <button onClick={handleSubmit}>Add</button>
+            <button type="submit">Add</button>
         </form>
     )
 }

@@ -1,4 +1,4 @@
-import Budget from "../Components/Budget";
+import Budget from "./Budget/Budget";
 
 const Dashboard = () => {
     return (
