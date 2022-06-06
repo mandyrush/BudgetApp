@@ -2,24 +2,14 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import BudgetItem from './BudgetItem';
 import BudgetItemCreate from './BudgetItemCreate';
-import styled from 'styled-components';
+import { Table } from './Styles';
 
-const Table = styled.table`
-    width: 100%;
-    margin-bottom: 3rem;
-    border-collapse: collapse;
-    & th {
-        text-align: left;
-    }
-    & tr {
-       border-bottom: 1px solid #ccc;
-    }
-`;
+import { BudgetItemData } from '../../../../Models/BudgetItem';
 
 const BUDGET_API = process.env.REACT_APP_BASEURL;
 
 const Budget = () => {
-    const [budgetItems, setBudgetItems] = useState([]);
+    const [budgetItems, setBudgetItems] = useState<BudgetItemData[]>([]);
 
     useEffect(() => {
         axios.get(`${BUDGET_API}/budgets`)
@@ -28,7 +18,7 @@ const Budget = () => {
             });
     }, [])
 
-    const handleAddBudgetItem = (item) => {
+    const handleAddBudgetItem = (item: BudgetItemData) => {
         setBudgetItems((prevItems) => {
             return [...prevItems, item]
         })
