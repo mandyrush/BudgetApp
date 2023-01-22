@@ -1,54 +1,66 @@
-import axios from 'axios';
-import { useState, useEffect } from 'react';
-import BudgetItem from './BudgetItem';
-import BudgetItemCreate from './BudgetItemCreate';
-import { Table } from './Styles';
+// import axios from "axios";
+import { useState, useEffect } from "react";
+import { BudgetEntry } from "../../../../Models/Budget";
+import BudgetItemCreate from "./BudgetItemCreate";
+import BudgetItem from "./BudgetItem";
+import { BudgetContainer } from "./Styles";
 
-import { BudgetItemData } from '../../../../Models/BudgetItem';
+// const BUDGET_API = process.env.REACT_APP_BASEURL;
 
-const BUDGET_API = process.env.REACT_APP_BASEURL;
+const tempBudgetItems = [
+  {
+    id: 0,
+    title: "Mortgage",
+    amount: 1730.0,
+    payment_method: "checking",
+    payment_day: 15,
+    payment_category: "house",
+  },
+  {
+    id: 1,
+    title: "Truck Loan",
+    amount: 345.72,
+    payment_method: "checking",
+    payment_day: 30,
+    payment_category: "vehicle",
+  },
+  {
+    id: 2,
+    title: "Spectrum",
+    amount: 74.99,
+    payment_method: "cc 2331",
+    payment_day: 10,
+    payment_category: "technology",
+  },
+] as BudgetEntry[];
 
 const Budget = () => {
-    const [budgetItems, setBudgetItems] = useState<BudgetItemData[]>([]);
+  const [budgetItems, setBudgetItems] = useState<BudgetEntry[]>([]);
 
-    useEffect(() => {
-        axios.get(`${BUDGET_API}/budgets`)
-            .then(response => {
-                setBudgetItems(response.data);
-            });
-    }, [])
+  useEffect(() => {
+    // axios.get(`${BUDGET_API}/budgets`)
+    //     .then(response => {
+    //         setBudgetItems(response.data);
+    //     });
+    setBudgetItems(tempBudgetItems);
+  }, []);
 
-    const handleAddBudgetItem = (item: BudgetItemData) => {
-        setBudgetItems((prevItems) => {
-            return [...prevItems, item]
-        })
-    }
+  const handleAddBudgetItem = (item: BudgetEntry) => {
+    setBudgetItems((prevItems) => {
+      return [...prevItems, item];
+    });
+  };
 
-    return (
-        <article>
-            <h2>Budget</h2>
-            <Table>
-                <thead>
-                    <tr>
-                        <th>Category</th>
-                        <th>Title</th>
-                        <th>Payment Method</th>
-                        <th>Payment Day</th>
-                        <th>Amount</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {budgetItems.map(item => (
-                        <BudgetItem
-                            key={item.id}
-                            item={item}
-                        />
-                    ))}
-                </tbody>
-            </Table>
-            <BudgetItemCreate addBudgetItem={handleAddBudgetItem} />
-        </article>
-    )
-}
+  return (
+    <article>
+      <h2>Budget</h2>
+      <BudgetItemCreate addBudgetItem={handleAddBudgetItem} />
+      <BudgetContainer>
+        {budgetItems &&
+          budgetItems.map((item) => <BudgetItem key={item.id} item={item} />)}
+      </BudgetContainer>
+    </article>
+  );
+};
 
 export default Budget;

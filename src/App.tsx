@@ -1,10 +1,12 @@
-import './App.css';
-import Navigation from './Components/Navigation';
+import "./App.css";
+import Navigation from "./Components/Navigation";
 
-export default function App() {
+const App = () => {
   return (
-    <div className='App'>
+    <div className="App">
       <Navigation />
     </div>
   );
-}
+};
+
+export default App;

@@ -1,13 +1,14 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const Table = styled.table`
-    width: 100%;
-    margin-bottom: 3rem;
-    border-collapse: collapse;
-    & th {
-        text-align: left;
-    }
-    & tr {
-       border-bottom: 1px solid #ccc;
-    }
+export const BudgetContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
+
+export const BudgetEntryContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #eee;
+  padding: 1rem;
 `;

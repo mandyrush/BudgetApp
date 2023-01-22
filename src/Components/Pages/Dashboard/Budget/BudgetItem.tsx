@@ -1,15 +1,30 @@
-import { BudgetItemData } from "../../../../Models/BudgetItem";
+import { BudgetEntry } from "../../../../Models/Budget";
+import { BudgetEntryContainer } from "./Styles";
+import moment from "moment";
 
-const BudgetItem: React.FC<{ item: BudgetItemData }> = (props) => {
-    return (
-        <tr>
-            <td>{props.item.payment_category}</td>
-            <td>{props.item.title}</td>
-            <td>{props.item.payment_method}</td>
-            <td>{props.item.payment_day}</td>
-            <td>{props.item.amount}</td>
-        </tr>
-    )
+interface BudgetItemProps {
+  item: BudgetEntry;
 }
+
+const BudgetItem = ({ item }: BudgetItemProps) => {
+  return (
+    <BudgetEntryContainer>
+      <div>
+        <div>{item.title}</div>
+        <div>Category: {item.payment_category}</div>
+        <div>
+          Paid from {item.payment_method} on the{" "}
+          {moment(item.payment_day).format("Do")}
+        </div>
+      </div>
+      <div>
+        {new Intl.NumberFormat("en", {
+          style: "currency",
+          currency: "USD",
+        }).format(item.amount)}
+      </div>
+    </BudgetEntryContainer>
+  );
+};
 
 export default BudgetItem;
