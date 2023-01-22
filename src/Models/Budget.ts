@@ -13,6 +13,6 @@ export interface BudgetEntry {
   title: string;
   amount: number;
   payment_method: string;
-  payment_day: number;
+  payment_day: number | null;
   payment_category: string;
 }

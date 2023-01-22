@@ -1,12 +1,16 @@
 import { BudgetEntry } from "../../../../Models/Budget";
 import { BudgetEntryContainer } from "./Styles";
-import moment from "moment";
+import dayjs from "dayjs";
+import AdvancedFormat from "dayjs/plugin/advancedFormat";
+dayjs.extend(AdvancedFormat);
 
 interface BudgetItemProps {
   item: BudgetEntry;
 }
 
 const BudgetItem = ({ item }: BudgetItemProps) => {
+  const paymentDate = new Date(`01-${item.payment_day}-2000`);
+
   return (
     <BudgetEntryContainer>
       <div>
@@ -14,14 +18,15 @@ const BudgetItem = ({ item }: BudgetItemProps) => {
         <div>Category: {item.payment_category}</div>
         <div>
           Paid from {item.payment_method} on the{" "}
-          {moment(item.payment_day).format("Do")}
+          {dayjs(paymentDate).format("Do")}
         </div>
       </div>
       <div>
-        {new Intl.NumberFormat("en", {
-          style: "currency",
-          currency: "USD",
-        }).format(item.amount)}
+        {item.amount &&
+          new Intl.NumberFormat("en", {
+            style: "currency",
+            currency: "USD",
+          }).format(Number(item.amount))}
       </div>
     </BudgetEntryContainer>
   );
