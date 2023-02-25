@@ -1,8 +1,10 @@
 // import axios from "axios";
 import { useState, useEffect } from "react";
 import { BudgetEntry } from "../../../../Models/Budget";
-import BudgetItemCreate from "./BudgetItemCreate";
+import BudgetFormModal from "./BudgetFormModal/BudgetFormModal";
 import BudgetItem from "./BudgetItem";
+import Button from "@mui/material/Button";
+import AddIcon from "@mui/icons-material/Add";
 import { BudgetContainer } from "./Styles";
 
 // const BUDGET_API = process.env.REACT_APP_BASEURL;
@@ -36,6 +38,11 @@ const tempBudgetItems = [
 
 const Budget = () => {
   const [budgetItems, setBudgetItems] = useState<BudgetEntry[]>([]);
+  const [formModalOpen, setformModalOpen] = useState(false);
+
+  const handleOpenFormModal = () => setformModalOpen(true);
+
+  const handleCloseFormModal = () => setformModalOpen(false);
 
   useEffect(() => {
     // axios.get(`${BUDGET_API}/budgets`)
@@ -54,11 +61,18 @@ const Budget = () => {
   return (
     <article>
       <h2>Budget</h2>
-      <BudgetItemCreate addBudgetItem={handleAddBudgetItem} />
+      <Button variant="contained" onClick={handleOpenFormModal}>
+        <AddIcon /> Add
+      </Button>
       <BudgetContainer>
         {budgetItems &&
           budgetItems.map((item) => <BudgetItem key={item.id} item={item} />)}
       </BudgetContainer>
+      <BudgetFormModal
+        addBudgetItem={handleAddBudgetItem}
+        formModalOpen={formModalOpen}
+        handleCloseFormModal={handleCloseFormModal}
+      />
     </article>
   );
 };

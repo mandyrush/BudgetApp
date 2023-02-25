@@ -38,9 +38,13 @@ const initialPaymentCategories = [
 
 interface BudgetItemCreateProps {
   addBudgetItem: (item: BudgetEntry) => void;
+  handleCloseFormModal: () => void;
 }
 
-const BudgetItemCreate = ({ addBudgetItem }: BudgetItemCreateProps) => {
+const BudgetItemCreate = ({
+  addBudgetItem,
+  handleCloseFormModal,
+}: BudgetItemCreateProps) => {
   const [paymentMethods, setPaymentMethods] = useState(initialPaymentMethods);
   const [paymentCategories, setPaymentCategories] = useState(
     initialPaymentCategories
@@ -167,7 +171,7 @@ const BudgetItemCreate = ({ addBudgetItem }: BudgetItemCreateProps) => {
         </FormControl>
 
         <FormControl fullWidth>
-          <InputLabel id="paymentCategoryLabel">Payment Category</InputLabel>
+          <InputLabel id="paymentCategoryLabel">Category</InputLabel>
           <Select
             name="paymentCategory"
             id="paymentCategory"
