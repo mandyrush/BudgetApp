@@ -1,4 +1,4 @@
-import { BudgetEntry } from "../../../../Models/Budget";
+import { BudgetEntry } from "../../../Models/Budget";
 import { BudgetEntryContainer } from "./Styles";
 import dayjs from "dayjs";
 import AdvancedFormat from "dayjs/plugin/advancedFormat";

@@ -1,4 +1,4 @@
-import { BudgetEntry } from "../../../../../Models/Budget";
+import { BudgetEntry } from "../../../../Models/Budget";
 import BudgetItemCreate from "../BudgetItemCreate";
 import Backdrop from "@mui/material/Backdrop";
 import Modal from "@mui/material/Modal";

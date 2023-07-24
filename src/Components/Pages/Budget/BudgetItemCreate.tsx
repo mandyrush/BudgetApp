@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BudgetEntry } from "../../../../Models/Budget";
+import { BudgetEntry } from "../../../Models/Budget";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import TextField from "@mui/material/TextField";

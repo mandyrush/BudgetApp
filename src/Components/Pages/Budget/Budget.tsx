@@ -1,6 +1,6 @@
 // import axios from "axios";
 import { useState, useEffect } from "react";
-import { BudgetEntry } from "../../../../Models/Budget";
+import { BudgetEntry } from "../../../Models/Budget";
 import BudgetFormModal from "./BudgetFormModal/BudgetFormModal";
 import BudgetItem from "./BudgetItem";
 import Button from "@mui/material/Button";
