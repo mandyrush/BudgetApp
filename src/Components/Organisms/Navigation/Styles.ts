@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { pink } from "@mui/material/colors";
+import { purple } from "@mui/material/colors";
 
 export const NavContainer = styled.nav`
   display: flex;
   align-items: center;
   justify-content: flex-start;
   gap: 1rem;
-  background-color: ${pink[600]};
+  background-color: #000;
+  border-bottom: 1px solid ${purple[200]};
   padding: 1rem;
 `;
 

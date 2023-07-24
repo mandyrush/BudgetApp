@@ -1,7 +1,8 @@
 import Widget from "../../Organisms/Widget/Widget";
 import Grid from "@mui/material/Grid";
+import PageLayout from "../../Containers/Page/PageLayout";
+import Header from "../../Atoms/Header/Header";
 import Typography from "@mui/material/Typography";
-import { MainContainer } from "./Styles";
 
 const Dashboard = () => {
   const tempBudgetValues = [
@@ -20,20 +21,14 @@ const Dashboard = () => {
   ];
 
   return (
-    <MainContainer maxWidth="lg">
-      <Typography
-        variant="h1"
-        gutterBottom
-        sx={{ color: "#fff", fontSize: 32 }}
-      >
-        Dashboard
-      </Typography>
+    <PageLayout>
+      <Header level="h1">Dashboard</Header>
       <Grid container spacing={3}>
         <Grid item md={6}>
-          <Widget title="Budget" data={tempBudgetValues} total={0.0} />
+          <Widget title="Budget" data={tempBudgetValues} total={2700.0} />
         </Grid>
       </Grid>
-    </MainContainer>
+    </PageLayout>
   );
 };
 

@@ -1,17 +1,11 @@
-import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
+import PageLayout from "../../Containers/Page/PageLayout";
+import Header from "../../Atoms/Header/Header";
 
 const Home = () => {
   return (
-    <Container maxWidth="lg">
-      <Typography
-        variant="h1"
-        gutterBottom
-        sx={{ fontSize: 32, color: "#fff" }}
-      >
-        Home
-      </Typography>
-    </Container>
+    <PageLayout>
+      <Header level="h1">Home</Header>
+    </PageLayout>
   );
 };
 
